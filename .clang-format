@@ -1,0 +1,32 @@
+﻿---
+BasedOnStyle: LLVM
+AlignEscapedNewlinesLeft: 'false'
+AlignTrailingComments: 'true'
+AllowShortBlocksOnASingleLine: 'false'
+AllowShortFunctionsOnASingleLine: None
+AllowShortIfStatementsOnASingleLine: 'false'
+AllowShortLoopsOnASingleLine: 'false'
+AlwaysBreakBeforeMultilineStrings: 'true'
+AlwaysBreakTemplateDeclarations: 'false'
+ColumnLimit: '128'
+Cpp11BracedListStyle: 'true'
+DerivePointerAlignment: 'true'
+DisableFormat: 'false'
+IndentWidth: '4'
+IndentWrappedFunctionNames: 'false'
+Language: Cpp
+NamespaceIndentation: All
+ObjCSpaceAfterProperty: 'false'
+ObjCSpaceBeforeProtocolList: 'false'
+PointerAlignment: Left
+SpaceBeforeAssignmentOperators: 'true'
+SpaceBeforeParens: ControlStatements
+SpaceInEmptyParentheses: 'true'
+SpacesInAngles: 'true'
+SpacesInCStyleCastParentheses: 'true'
+SpacesInParentheses: 'true'
+Standard: Auto
+TabWidth: '4'
+UseTab: ForIndentation
+
+...

@@ -60,7 +60,7 @@ set(GLM_TEST_FORCE_PURE
     CACHE BOOL "" FORCE)
 
 set(GLM_DIR "${CMAKE_CURRENT_LIST_DIR}/glm-${GLM_VERSION}")
-set(GLM_BUILD_DIR "${CMAKE_CURRENT_BINARY_DIR}/glm")
+set(GLM_BUILD_DIR "${ALCHEMY_DEPENDENCIES_BUILD_DIR}/glm")
 if(NOT EXISTS ${GLM_DIR})
   message(ERROR "GLM source directory (\"${GLM_DIR}\") doesn't exist.")
 endif()
