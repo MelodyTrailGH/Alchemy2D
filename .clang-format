@@ -28,5 +28,6 @@ SpacesInParentheses: 'true'
 Standard: Auto
 TabWidth: '4'
 UseTab: ForIndentation
+SortIncludes: 'false'
 
 ...

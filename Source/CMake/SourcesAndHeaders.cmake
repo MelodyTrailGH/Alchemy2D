@@ -8,6 +8,8 @@ ${ALCHEMY_SOURCE_DIRECTORY}/Core/Application.cc
 set(ALCHEMY_PUBLIC_HEADERS
     ${ALCHEMY_INCLUDE_DIRECTORY}/Alchemy2D/Graphics/Renderer.hh
     ${ALCHEMY_INCLUDE_DIRECTORY}/Alchemy2D/Graphics/Window.hh
+    ${ALCHEMY_INCLUDE_DIRECTORY}/Alchemy2D/Graphics/WindowFlag.hh
+    ${ALCHEMY_INCLUDE_DIRECTORY}/Alchemy2D/Graphics/WindowManager.hh
     ${ALCHEMY_INCLUDE_DIRECTORY}/Alchemy2D/Utility/Math/Vector2.hh
     ${ALCHEMY_INCLUDE_DIRECTORY}/Alchemy2D/Utility/Math.hh)
 
