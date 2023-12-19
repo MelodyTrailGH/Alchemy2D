@@ -149,7 +149,7 @@ set(SDL_POWER
     OFF
     CACHE BOOL "" FORCE)
 set(SDL_PTHREADS
-    OFF
+    ON
     CACHE BOOL "" FORCE)
 set(SDL_PULSEAUDIO
     ON
