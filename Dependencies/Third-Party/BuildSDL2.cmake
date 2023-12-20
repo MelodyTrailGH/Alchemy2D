@@ -106,9 +106,15 @@ set(SDL_JOYSTICK
 set(SDL_KMSDRM
     ON
     CACHE BOOL "" FORCE)
+if (WIN32)
 set(SDL_LIBC
-    OFF
-    CACHE BOOL "" FORCE)
+        OFF
+        CACHE BOOL "" FORCE)
+elseif(UNIX)
+    set(SDL_LIBC
+        ON
+        CACHE BOOL "" FORCE)
+endif()
 set(SDL_LIBSAMPLERATE
     OFF
     CACHE BOOL "" FORCE)
