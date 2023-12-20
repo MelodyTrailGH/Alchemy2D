@@ -20,7 +20,6 @@ namespace Alchemy2D {
 				this->shouldClose = true;
 			}
 			SDL_Event event;
-#pragma unroll
 			while ( SDL_PollEvent( &event ) != 0 ) {
 				if ( event.type == SDL_WINDOWEVENT ) {
 					WindowManager->update( &event );

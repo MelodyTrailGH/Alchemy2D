@@ -11,7 +11,7 @@ set(SDL_ARTS
     OFF
     CACHE BOOL "" FORCE)
 set(SDL_ASAN
-    ON
+    OFF
     CACHE BOOL "" FORCE)
 set(SDL_ASSEMBLY
     ON
@@ -77,7 +77,7 @@ set(SDL_FUSIONSOUND
     OFF
     CACHE BOOL "" FORCE)
 set(SDL_GCC_ATOMICS
-    OFF
+    ON
     CACHE BOOL "" FORCE)
 set(SDL_HAPTIC
     ON
@@ -154,9 +154,15 @@ set(SDL_PIPEWIRE
 set(SDL_POWER
     OFF
     CACHE BOOL "" FORCE)
+if (WIN32)
+set(SDL_PTHREADS
+    OFF
+    CACHE BOOL "" FORCE)
+elseif(UNIX)
 set(SDL_PTHREADS
     ON
     CACHE BOOL "" FORCE)
+endif()
 set(SDL_PULSEAUDIO
     ON
     CACHE BOOL "" FORCE)

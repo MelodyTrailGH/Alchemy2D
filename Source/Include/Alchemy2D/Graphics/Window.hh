@@ -62,10 +62,10 @@ namespace Alchemy2D::Graphics {
 		~Window( ); // Still need the deconstructor since SDL has a special function for removing windows.
 
 		// This is way too many constructors but I don't care.
-		Window( Utility::Math::Vector2 position, Utility::Math::Vector2 size, const std::string& name, WindowFlag flags );
+		Window( Utility::Math::Vector2 position, Utility::Math::Vector2 size, const std::string& name, std::uint32 flags );
 		Window( Utility::Math::Vector2 position, Utility::Math::Vector2 size, const std::string& name );
 		Window( std::int32_t xPosition, std::int32_t yPosition, std::int32_t width, std::int32_t height,
-		        const std::string& name, WindowFlag flags );
+		        const std::string& name, std::uint32 flags );
 		Window( std::int32_t xPosition, std::int32_t yPosition, std::int32_t width, std::int32_t height,
 		        const std::string& name );
 

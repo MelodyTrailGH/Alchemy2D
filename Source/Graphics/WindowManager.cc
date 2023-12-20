@@ -13,7 +13,6 @@ namespace Alchemy2D::Graphics {
 	}
 
 	void WindowManager::update( const SDL_Event* event ) {
-#pragma unroll 1
 		for ( std::uint64_t windowIndex = 0; windowIndex < this->getWindowCount( ); ++windowIndex ) {
 			const Window* window = this->windows.at( windowIndex );
 			if ( event->window.windowID == window->getId( ) ) {

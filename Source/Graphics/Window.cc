@@ -8,7 +8,7 @@ namespace Alchemy2D::Graphics {
 
 	// Bro this goofy function is nearly impossible to read.
 	SDL_Window* Window::CreateWindow( Utility::Math::Vector2 position, Utility::Math::Vector2 size, const std::string& name,
-	                                  WindowFlag flags ) {
+	                                  std::uint32 flags ) {
 		if ( ( SDL_WasInit( SDL_INIT_VIDEO ) != SDL_INIT_VIDEO ) && ( SDL_InitSubSystem( SDL_INIT_VIDEO ) != 0 ) ) {
 			std::terminate( );
 		}
