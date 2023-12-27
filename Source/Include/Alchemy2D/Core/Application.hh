@@ -1,17 +1,14 @@
 #pragma once
 
-#include <Alchemy2D/Graphics/WindowManager.hh>
-
-namespace Alchemy2D {
+namespace Alchemy2D::Core {
 	class Application {
-	  private:
-		Graphics::WindowManager *WindowManager;
-		bool shouldClose = false;
 
 	  public:
+		Application( );
+		Application( Application const &other );
+		Application( Application &&other ) noexcept;
 		~Application( );
-		void setWindowManager( Graphics::WindowManager *windowManager );
-		Graphics::WindowManager *getWindowManager( );
-		void run( );
+		Application &operator=( Application &other );
+		Application &operator=( Application &&other ) noexcept;
 	};
-} // namespace Alchemy2D
+} // namespace Alchemy2D::Core
