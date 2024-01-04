@@ -17,22 +17,6 @@ freely, subject to the following restrictions:
    misrepresented as being the original software.
 3. This notice may not be removed or altered from any source distribution.
 ]]
-cmake_minimum_required(VERSION 3.0.0...3.5.0)
-project(Alchemy2D)
-set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_CURRENT_LIST_DIR}/CMake")
 
-set(ROOT_CMAKE_LIST_DIR ${CMAKE_CURRENT_LIST_DIR})
-
-set(ALCHEMY_DEPENDENCIES_DIR
-    "${CMAKE_CURRENT_LIST_DIR}/Dependencies/Third-Party/")
-set(ALCHEMY_DEPENDENCIES_BUILD_DIR "${CMAKE_CURRENT_BINARY_DIR}/Dependencies")
-
-if(PROJECT_SOURCE_DIR STREQUAL PROJECT_BINARY_DIR)
-  message(
-    FATAL_ERROR
-      "In-source builds not allowed. Please make a new directory (called a build directory) and run CMake from there.\n"
-  )
-endif()
-
-include(BuildDependencies)
-add_subdirectory("${CMAKE_CURRENT_LIST_DIR}/Source")
+include(BuildGLFW)
+include(BuildGLEW)

@@ -17,22 +17,20 @@ freely, subject to the following restrictions:
    misrepresented as being the original software.
 3. This notice may not be removed or altered from any source distribution.
 ]]
-cmake_minimum_required(VERSION 3.0.0...3.5.0)
-project(Alchemy2D)
-set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_CURRENT_LIST_DIR}/CMake")
+set(GLEW_VERSION 2.2.0)
 
-set(ROOT_CMAKE_LIST_DIR ${CMAKE_CURRENT_LIST_DIR})
+set(BUILD_SHARED_LIBS OFF CACHE BOOL "" FORCE)
+set(BUILD_UTILS OFF CACHE BOOL "" FORCE)
+set(GLEW_OSMESA ON CACHE BOOL "" FORCE)
+set(GLEW_REGAL OFF CACHE BOOL "" FORCE)
 
-set(ALCHEMY_DEPENDENCIES_DIR
-    "${CMAKE_CURRENT_LIST_DIR}/Dependencies/Third-Party/")
-set(ALCHEMY_DEPENDENCIES_BUILD_DIR "${CMAKE_CURRENT_BINARY_DIR}/Dependencies")
 
-if(PROJECT_SOURCE_DIR STREQUAL PROJECT_BINARY_DIR)
-  message(
-    FATAL_ERROR
-      "In-source builds not allowed. Please make a new directory (called a build directory) and run CMake from there.\n"
-  )
+if (NOT EXISTS "${ALCHEMY_DEPENDENCIES_DIR}/glew-${GLEW_VERSION}")
+    if (WIN32)
+
+    elseif (UNIX)
+        message(FATAL_ERROR "Please run DownloadDependencies.sh from ${ALCHEMY_DEPENDENCIES_DIR}.")
+    endif()
 endif()
 
-include(BuildDependencies)
-add_subdirectory("${CMAKE_CURRENT_LIST_DIR}/Source")
+add_subdirectory("${ALCHEMY_DEPENDENCIES_DIR}/glew-${GLEW_VERSION}/build/cmake" "${ALCHEMY_DEPENDENCIES_BUILD_DIR}/glew")

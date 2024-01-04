@@ -17,6 +17,7 @@ freely, subject to the following restrictions:
    misrepresented as being the original software.
 3. This notice may not be removed or altered from any source distribution.
 ]]
+cmake_minimum_required(VERSION 3.0.0...3.5.0)
 project(
   Alchemy2D
   VERSION 1.0.0.0
@@ -28,12 +29,11 @@ project(
 # ##############################################################################
 # Misc.
 # ##############################################################################
-  if (UNIX)
-    add_compile_options("$<$<CONFIG:DEBUG>:-D_DEBUG>")    #this will allow to use same _DEBUG macro available in both Linux as well as Windows - MSCV environment. Easy to put Debug specific code.
+if (UNIX)
+add_compile_options("$<$<CONFIG:DEBUG>:-D_DEBUG>")    #this will allow to use same _DEBUG macro available in both Linux as well as Windows - MSCV environment. Easy to put Debug specific code.
 endif (UNIX)
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_CURRENT_LIST_DIR}/CMake")
-
 
 # ##############################################################################
 # Alternative Names.
@@ -47,10 +47,22 @@ else()
 endif()
 
 # ##############################################################################
+# Getting sources.
+# ##############################################################################
+set(ALCHEMY_SOURCE_DIRECTORY ${CMAKE_CURRENT_LIST_DIR})
+set(ALCHEMY_INCLUDE_DIRECTORY ${ALCHEMY_SOURCE_DIRECTORY}/Include)
+include(SourcesAndHeaders)
+
+
+# ##############################################################################
 # Configure target.
 # ##############################################################################
 set(ALCHEMY_TARGET_NAME "Alchemy2D")
-add_library(${ALCHEMY_TARGET_NAME})
+add_library(${ALCHEMY_TARGET_NAME} STATIC ${ALCHEMY_SOURCES} ${ALCHEMY_PUBLIC_HEADERS})
+target_include_directories(
+  ${ALCHEMY_TARGET_NAME}
+  PUBLIC $<BUILD_INTERFACE:${ALCHEMY_INCLUDE_DIRECTORY}>
+         $<INSTALL_INTERFACE:include/${ALCHEMY_LIBRARY_NAME}>)
 
 set_target_properties(
   ${ALCHEMY_TARGET_NAME}
@@ -76,34 +88,3 @@ set_target_properties(${ALCHEMY_TARGET_NAME} PROPERTIES
 
 include(StandardCompilerWarnings)
 set_project_warnings(${ALCHEMY_TARGET_NAME})
-
-# ##############################################################################
-# Getting sources.
-# ##############################################################################
-set(ALCHEMY_SOURCE_DIRECTORY ${CMAKE_CURRENT_LIST_DIR})
-set(ALCHEMY_INCLUDE_DIRECTORY ${ALCHEMY_SOURCE_DIRECTORY}/Include)
-include(SourcesAndHeaders)
-
-# ##############################################################################
-# Adding depedencies
-# ##############################################################################
-include(${ALCHEMY_DEPENDENCIES_DIR}/BuildDependencies.cmake)
-# add_dependencies(${ALCHEMY_TARGET_NAME} SDL2)
-target_link_libraries(${ALCHEMY_TARGET_NAME} PUBLIC SDL2::SDL2)
-
-# ##############################################################################
-# Adding aliases.
-# ##############################################################################
-add_library(${ALCHEMY_TARGET_NAME}::${ALCHEMY_TARGET_NAME} ALIAS
-            ${ALCHEMY_TARGET_NAME})
-
-# ##############################################################################
-# Dealing with installation.
-# ##############################################################################
-include(GNUInstallDirs)
-install(
-  TARGETS ${ALCHEMY_TARGET_NAME}
-  EXPORT ${ALCHEMY_TARGET_NAME}Targets
-  LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
-  RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
-  ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR})

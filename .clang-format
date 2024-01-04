@@ -1,4 +1,4 @@
-﻿---
+---
 BasedOnStyle: LLVM
 AlignEscapedNewlinesLeft: 'false'
 AlignTrailingComments: 'true'
@@ -29,5 +29,3 @@ Standard: Auto
 TabWidth: '4'
 UseTab: ForIndentation
 SortIncludes: 'false'
-
-...

@@ -1,1 +1,0 @@
-#include "Alchemy2D/Core/Application.hh"

@@ -17,3 +17,22 @@ freely, subject to the following restrictions:
    misrepresented as being the original software.
 3. This notice may not be removed or altered from any source distribution.
 ]]
+set(GLFW_VERSION 3.3.9)
+set(BUILD_SHARED_LIBS OFF CACHE BOOL "" FORCE)
+set(GLFW_BUILD_DOCS OFF CACHE BOOL "" FORCE)
+set(GLFW_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
+set(GLFW_BUILD_TESTS OFF CACHE BOOL "" FORCE)
+set(GLFW_INSTALL OFF CACHE BOOL "" FORCE)
+set(GLFW_USE_OSMESA ON CACHE BOOL "" FORCE)
+set(GLFW_USE_WAYLAND OFF CACHE BOOL "" FORCE)
+set(GLFW_VULKAN_STATIC ON CACHE BOOL "" FORCE)
+
+if (NOT EXISTS "${ALCHEMY_DEPENDENCIES_DIR}/glfw-${GLFW_VERSION}")
+    if (WIN32)
+
+    elseif (UNIX)
+        message(FATAL_ERROR "Please run DownloadDependencies.sh from ${ALCHEMY_DEPENDENCIES_DIR}.")
+    endif()
+endif()
+
+add_subdirectory("${ALCHEMY_DEPENDENCIES_DIR}/glfw-${GLFW_VERSION}" "${ALCHEMY_DEPENDENCIES_BUILD_DIR}/glfw")
