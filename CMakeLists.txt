@@ -34,5 +34,7 @@ if(PROJECT_SOURCE_DIR STREQUAL PROJECT_BINARY_DIR)
   )
 endif()
 
-include(BuildDependencies)
 add_subdirectory("${CMAKE_CURRENT_LIST_DIR}/Source")
+
+
+add_subdirectory("${CMAKE_CURRENT_LIST_DIR}/Examples")

@@ -59,10 +59,6 @@ include(SourcesAndHeaders)
 # ##############################################################################
 set(ALCHEMY_TARGET_NAME "Alchemy2D")
 add_library(${ALCHEMY_TARGET_NAME} STATIC ${ALCHEMY_SOURCES} ${ALCHEMY_PUBLIC_HEADERS})
-target_include_directories(
-  ${ALCHEMY_TARGET_NAME}
-  PUBLIC $<BUILD_INTERFACE:${ALCHEMY_INCLUDE_DIRECTORY}>
-         $<INSTALL_INTERFACE:include/${ALCHEMY_LIBRARY_NAME}>)
 
 set_target_properties(
   ${ALCHEMY_TARGET_NAME}
@@ -77,6 +73,16 @@ set_target_properties(
 target_compile_features(${ALCHEMY_TARGET_NAME} PUBLIC c_std_17)
 target_compile_features(${ALCHEMY_TARGET_NAME} PUBLIC cxx_std_17)
 
+# ##############################################################################
+# Add interal dependencies.
+# ##############################################################################
+target_include_directories(
+  ${ALCHEMY_TARGET_NAME}
+  PUBLIC $<BUILD_INTERFACE:${ALCHEMY_INCLUDE_DIRECTORY}>
+         $<INSTALL_INTERFACE:include/${ALCHEMY_LIBRARY_NAME}>)
+
+
+
 set_target_properties(${ALCHEMY_TARGET_NAME} PROPERTIES
             C_STANDARD 17
             C_STANDARD_REQUIRED ON
@@ -88,3 +94,30 @@ set_target_properties(${ALCHEMY_TARGET_NAME} PROPERTIES
 
 include(StandardCompilerWarnings)
 set_project_warnings(${ALCHEMY_TARGET_NAME})
+
+# ##############################################################################
+# Adding depedencies
+# ##############################################################################
+include(BuildDependencies)
+find_package(OpenGL REQUIRED)
+add_dependencies(${ALCHEMY_TARGET_NAME} glfw)
+add_dependencies(${ALCHEMY_TARGET_NAME} glew)
+add_dependencies(${ALCHEMY_TARGET_NAME} fmt)
+target_link_libraries(${ALCHEMY_TARGET_NAME} PUBLIC OpenGL::GL glfw glew fmt::fmt)
+
+# ##############################################################################
+# Adding aliases.
+# ##############################################################################
+add_library(${ALCHEMY_TARGET_NAME}::${ALCHEMY_TARGET_NAME} ALIAS
+            ${ALCHEMY_TARGET_NAME})
+
+# ##############################################################################
+# Dealing with installation.
+# ##############################################################################
+include(GNUInstallDirs)
+install(
+  TARGETS ${ALCHEMY_TARGET_NAME}
+  EXPORT ${ALCHEMY_TARGET_NAME}Targets
+  LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+  RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+  ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR})

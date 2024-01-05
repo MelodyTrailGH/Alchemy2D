@@ -20,3 +20,4 @@ freely, subject to the following restrictions:
 
 include(BuildGLFW)
 include(BuildGLEW)
+include(Buildfmt)
